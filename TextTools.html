@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Karakuri-ism Text Tools</title>
+    <link rel="stylesheet" href="TextTools.css" />
+    <script src="TextTools.js" async defer></script>
+    <script src="helpers/gameSelector.js" async defer></script>
+    <script src="constants/characterArrays.js" async defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Karakuri-ism Text Tools</h1>
+      <p>Arneth's Text Tools for Karakuri-ism games</p>
+    </header>
+    <div id="textTools">
+      <!-- Tab links -->
+      <div class="tab">
+        <button
+          id="defaultOpen"
+          class="tablinks"
+          onclick="openTab(event, 'Export')"
+        >
+        <h2>Export</h2>
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'Import')">
+          <h2>Import</h2>
+        </button>
+      </div>
+
+      <!-- Tab content -->
+      <div id="Export" class="tabcontent">
+        <p>Export your text files.</p>
+        <game-selector id="exportGameSelector"></game-selector>
+        <div class="gameFileInput">
+            <label for="gameFileExport">Select a .bytes file to export:</label>
+            <input type="file" id="gameFileExport" accept=".bytes" charset=utf-16LE onChange="SetExportFile(event)"/>
+        </div>
+        <div class="exportSection">
+          <button disabled="disabled" id="exportButton" onclick="ExportButtonClick()">Export</button>
+        </div>
+        <div class="downloadSection">
+          <button disabled="disabled" id="downloadExportTxtButton" onclick="ExportTxtDownload()">Download .txt</button>
+          <button disabled="disabled" id="downloadExportCsvButton" onclick="ExportCsvDownload()">Download .csv</button>
+        </div>
+      </div>
+
+      <div id="Import" class="tabcontent">
+        <p>Import your text files.</p>
+        <game-selector id="importGameSelector"></game-selector>
+        <div class="gameFileInput">
+            <label for="gameFileInput">Select a .txt or .csv file to import:</label>
+            <input type="file" id="gameFileInput" accept=".txt,.csv" charset=utf-16LE onChange="SetImportFile(event)"/>
+        </div>
+        <div class="importSection">
+          <button disabled="disabled" id="importButton" onclick="ImportButtonClick()">Import</button>
+        </div>
+        <div class="downloadSection">
+          <button disabled="disabled" id="downloadBytesButton" onclick="DownloadImportedFile()">Download</button>
+        </div>
+      </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
