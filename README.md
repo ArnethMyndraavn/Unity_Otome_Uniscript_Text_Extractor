@@ -2,10 +2,13 @@
 
 A VN text extractor for games using code by karakuri-ism. It requires a file that matches this naming convention: `***_ep0_text_2.bytes`.
 
+## No Download Required, Convert the files in Browser
+Tool can be accessed at [https://arnethmyndraavn.github.io/Karakuri-ism_Text_Extractor/TextTools.html](https://arnethmyndraavn.github.io/Karakuri-ism_Text_Extractor/TextTools.html)
+
 ## Currently supported games
 
-- スペードの国のアリス ~Wonderful White World~ (JP Switch)
-- スペードの国のアリス ~Wonderful Black World~ (JP Switch)
+- スペードの国のアリス \~Wonderful White World\~ (JP Switch)
+- スペードの国のアリス \~Wonderful Black World\~ (JP Switch)
 - BUSTAFELLOWS (EN Steam)
 - BUSTAFELLOWS Season 2 (EN Steam demo)
 
