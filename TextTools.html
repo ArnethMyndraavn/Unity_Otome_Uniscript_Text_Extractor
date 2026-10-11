@@ -32,7 +32,8 @@
 
       <!-- Tab content -->
       <div id="Export" class="tabcontent">
-        <h2>Export Game Text</h2>
+        <h2 class="tabContentTitle">Export Game Text</h2>
+        <div class="gameSelectorLabel">Choose your game:</div>
         <game-selector id="exportGameSelector"></game-selector>
         <div class="gameFileInput">
             <label for="gameFileExport">Select a <span class="file-extension">.bytes</span> file to export:</label>
@@ -48,7 +49,8 @@
       </div>
 
       <div id="Import" class="tabcontent">
-        <h2>Import your text files</h2>
+        <h2 class="tabContentTitle">Import your text</h2>
+        <div class="gameSelectorLabel">Choose your game:</div>
         <game-selector id="importGameSelector"></game-selector>
         <div class="gameFileInput">
             <label for="gameFileInput">Select a <span class="file-extension">.txt</span> or <span class="file-extension">.csv</span> file to import:</label>

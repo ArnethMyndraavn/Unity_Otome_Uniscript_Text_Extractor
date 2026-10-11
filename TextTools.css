@@ -68,6 +68,11 @@ header p {
   font-size: 1.1rem;
 }
 
+.tabContentTitle {
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
 .tab button:hover {
   color: #123f60;
   background-color: #cbdde9;
@@ -103,7 +108,7 @@ input:focus-visible {
 .exportSection,
 .importSection,
 .downloadSection {
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
 }
 
 .gameFileInput label {
@@ -120,6 +125,11 @@ input:focus-visible {
   border-radius: 4px;
 }
 
+.gameSelectorLabel {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
 input[type="file"] {
   max-width: 100%;
   color: #53677a;
@@ -128,6 +138,7 @@ input[type="file"] {
 
 .gameSelect {
   max-width: 100%;
+  margin-bottom: 0.75rem;
   padding: 0.7rem 2.5rem 0.7rem 1rem;
   border: 1px solid #1f7bb1;
   border-radius: 7px;
