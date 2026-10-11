@@ -168,6 +168,9 @@ async function ExportGameFile(file) {
   console.dir(
     "Selected Game: " + GetGameDropdownSelected("exportGameSelector"),
   );
+  // Empty the exportedDialogue array before populating it with new data.
+  // This ensures that we don't accumulate dialogue from previous exports.
+  exportedDialogue = [];
   for (let i = 1; i <= numberOfLines; i++) {
     let temp = GetTextFromBytes(table, charArray, view, i);
     exportedDialogue.push(temp);

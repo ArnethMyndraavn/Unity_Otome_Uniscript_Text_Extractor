@@ -32,10 +32,10 @@
 
       <!-- Tab content -->
       <div id="Export" class="tabcontent">
-        <p>Export your text files.</p>
+        <h2>Export Game Text</h2>
         <game-selector id="exportGameSelector"></game-selector>
         <div class="gameFileInput">
-            <label for="gameFileExport">Select a .bytes file to export:</label>
+            <label for="gameFileExport">Select a <span class="file-extension">.bytes</span> file to export:</label>
             <input type="file" id="gameFileExport" accept=".bytes" charset=utf-16LE onChange="SetExportFile(event)"/>
         </div>
         <div class="exportSection">
@@ -48,10 +48,10 @@
       </div>
 
       <div id="Import" class="tabcontent">
-        <p>Import your text files.</p>
+        <h2>Import your text files</h2>
         <game-selector id="importGameSelector"></game-selector>
         <div class="gameFileInput">
-            <label for="gameFileInput">Select a .txt or .csv file to import:</label>
+            <label for="gameFileInput">Select a <span class="file-extension">.txt</span> or <span class="file-extension">.csv</span> file to import:</label>
             <input type="file" id="gameFileInput" accept=".txt,.csv" charset=utf-16LE onChange="SetImportFile(event)"/>
         </div>
         <div class="importSection">
@@ -63,6 +63,55 @@
       </div>
       </div>
     </div>
-    
+    <div id="faq" class="tab">
+      
+      <div Class="faqContent">
+        <h2>FAQ</h2>
+        <h3>What Games are Supported?</h3>
+        <ul>
+          <li>スペードの国のアリス ~Wonderful White World~ (JP Switch)</li>
+          <li>スペードの国のアリス ~Wonderful Black World~ (JP Switch)</li>
+          <li>BUSTAFELLOWS (EN Steam)</li>
+          <li>BUSTAFELLOWS Season 2 (EN Steam demo)</li>
+        </ul>
+
+        <h3>How Do I Use This Tool?</h3>
+        <h4>Exporting:</h4>
+        <ul>
+          <li>Acquire the .bytes file from your game. (On Steam, you can find it in the game's StreamingAssets directory, on Switch you must extract the RomFS)</li>
+          <li>Select a game from the dropdown menu. If you don't see your game, Select "Other" and specify the character array. (Character arrays are different for each game and may be located in different places)</li>
+          <li>Click Browse and select the .bytes file you want to export.</li>
+          <li>Click the export button to process the file.</li>
+          <li>Click download as .txt or .csv to download the exported file in your preferred format.</li>
+        </ul>
+        <h4>Importing:</h4>
+        <ul>
+          <li>After exporting your text, you can edit it in a text editor or spreadsheet program.</li>
+          <li>When you're ready to import your changes, select the game from the dropdown menu</li>
+          <li>Click Browse to select your edited .txt file. (.csv support coming soon!)</li>
+          <li>Click the import button to process your files.</li>
+          <li>Click download to download the game formatted file.</li>
+          <li>Replace the original .bytes file in your game's directory with the downloaded file. (Or, if on Switch, place it in the appropriate mod directory)</li>
+        </ul>
+        <h3>Why would I select "Other" in the Game Selector?/What is a Character Array?</h3>
+        <p>
+          "Other" allows you to specify a custom character array if your game is not listed.
+          A character array is a list of characters that the game recognizes.
+          It is used to convert the text in the game into a format that can be read and edited by humans.
+          Each game has its own character array, which may be located in different places within the game's files.
+        </p>
+        <h3>Why is .csv supported for export and but not for import?</h3>
+        <p>
+          .csv support is planned for a future update. Currently, only .txt files are supported for import. 
+          If you are working from a .csv file, you can export the final translation column as a .txt file delimited by newlines and import that instead.
+        </p>
+        <h3>Why can I not select download after exporting?</h3>
+        <p>
+          The file you provided is likely not a valid .bytes file and the tool failed to parse it.
+          Please ensure you are using a valid .bytes file from the game you selected and try again.
+          Enhanced error handling and reporting is planned for a future update.
+        </p>
+      </div>
+    </div>
   </body>
 </html>
