@@ -12,6 +12,7 @@ Tool can be accessed at [https://arnethmyndraavn.github.io/Unity_Otome_Uniscript
 - スペードの国のアリス \~Wonderful Black World\~ (JP Switch)
 - BUSTAFELLOWS (EN Steam)
 - BUSTAFELLOWS Season 2 (EN Steam demo)
+- Mistonia's Hope -The Lost Delight- (EN Switch)
 
 ## How to export
 
@@ -26,8 +27,8 @@ Tool can be accessed at [https://arnethmyndraavn.github.io/Unity_Otome_Uniscript
 1. Take your translated file (only `.txt` is supported at the moment).
 2. In the tool, select your chosen game from the dropdown.
 3. Click Import to process the file.
-4. Click Download to generate a new `.bytes` file for use in-game.
-5. Rename the downloaded file to the original `***_ep0_text_2.bytes` format and replace the original game file. For Switch, you can create a layeredFS mod.
+4. Click Download to generate a new `.bytes` file for use in-game. Mistonia's Hope downloads both the Text and Talk `.bytes` files as the game needs both.
+5. Rename the downloaded `.bytes` file to the original `***_ep0_text_2.bytes` format and replace the original game file. For Switch, you can create a layeredFS mod.
 
 ## File binary structure
 

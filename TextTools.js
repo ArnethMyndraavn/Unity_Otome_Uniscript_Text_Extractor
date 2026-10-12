@@ -6,6 +6,7 @@ let importFile = null;
 
 let exportedDialogue = [];
 let importedDialogue = [];
+let importedDialogueStripped = [];
 
 let exportPosition = 0;
 let importPosition = 0;
@@ -15,6 +16,7 @@ function ResetFileState() {
   importFile = null;
   exportedDialogue = [];
   importedDialogue = [];
+  importedDialogueStripped = [];
 
   document.getElementById("gameFileExport").value = "";
   document.getElementById("gameFileInput").value = "";
@@ -212,13 +214,11 @@ async function ExportCsvDownload() {
 
 async function ImportGameFile(file) {
   console.log("Importing game file: " + file.name);
-  const view = new DataView(
-    await file.arrayBuffer(),
-    0,
-    (await file.arrayBuffer()).byteLength,
-  );
+  const fileBuffer = await file.arrayBuffer();
+  const view = new DataView(fileBuffer);
 
   let extension = file.name.split(".").pop().toLowerCase();
+  let dialogueString;
   if (extension == "csv") {
     console.dir("Importing CSV file");
     debugger;
@@ -234,16 +234,9 @@ async function ImportGameFile(file) {
   //TODO: Must have a string parsable by linebreaks. Review is this is suitable for CSV
   let dialogueArray = dialogueString.split("\n");
   console.log("Dialogue Array: " + dialogueArray);
-
-  const bytes = [];
-  bytes.push(85, 84, 88, 84);
-
-  let versionNumber = 1;
-  bytes.push(
-    versionNumber,
-    versionNumber >> 8,
-    versionNumber >> 16,
-    versionNumber >> 24,
+  let dialogueArrayStripped = dialogueArray.filter(
+    (line) =>
+      !/SCREEN|SLIDE_LEFT|SLIDE_RIGHT|\d{3}_\d{3}_\d{2}|"(\d{4})"/.test(line),
   );
 
   //Date as minutes since 2018 as per game's code
@@ -260,6 +253,11 @@ async function ImportGameFile(file) {
     gameDate = new Date(2025, 6, 28, 9, 48, 0, 0);
   } else if (game == "BUSTA2_EN") {
     gameDate = new Date(2025, 2, 10, 14, 43, 0, 0);
+  } else if (game == "MISTONIAS_HOPE_EN") {
+    gameDate = new Date(2025, 7, 25, 14, 43, 0, 0);
+  } else {
+    //If the game is not recognized, use a default date of February 1, 2018
+    gameDate = new Date(2018, 1, 1, 0, 0, 0, 0);
   }
 
   let creationDate = Math.round(
@@ -269,6 +267,26 @@ async function ImportGameFile(file) {
   );
   console.log("Creation Date: " + creationDate);
 
+  let charArray = GetGameCharArrray(game);
+  importedDialogue = BuildImportedFile(dialogueArray, charArray, creationDate);
+  importedDialogueStripped =
+    game == "MISTONIAS_HOPE_EN"
+      ? BuildImportedFile(dialogueArrayStripped, charArray, creationDate)
+      : [];
+  document.getElementById("downloadBytesButton").disabled = false;
+}
+
+function BuildImportedFile(dialogueArray, charArray, creationDate) {
+  const bytes = [];
+  bytes.push(85, 84, 88, 84);
+
+  let versionNumber = 1;
+  bytes.push(
+    versionNumber,
+    versionNumber >> 8,
+    versionNumber >> 16,
+    versionNumber >> 24,
+  );
   bytes.push(
     creationDate,
     creationDate >> 8,
@@ -277,8 +295,6 @@ async function ImportGameFile(file) {
   );
 
   //CALCULATE INFO
-  let charArray = GetGameCharArrray(game);
-  console.log(game);
   //convert each char into an index in the array
   let linesAsCharIndexes = [];
   let linesAsBytes = [];
@@ -340,20 +356,39 @@ async function ImportGameFile(file) {
   }
   console.log(linesAsCharIndexes);
 
-  let finalBytes = Uint8Array.from(bytes);
-  importedDialogue = finalBytes;
-  document.getElementById("downloadBytesButton").disabled = false;
+  return Uint8Array.from(bytes);
 }
 
 function DownloadImportedFile() {
+  const fileNameWithoutExtension = importFile.name.replace(/\.[^/.]+$/, "");
+  const isMistonia = importedDialogueStripped.length > 0;
+  if (!isMistonia) {
+    DownloadBytesFile(
+      importedDialogue,
+      fileNameWithoutExtension + "_EXPORT.bytes",
+    );
+  }
+
+  if (isMistonia) {
+    DownloadBytesFile(
+      importedDialogue,
+      fileNameWithoutExtension + "_EXPORT_TEXT.bytes",
+    );
+    DownloadBytesFile(
+      importedDialogueStripped,
+      fileNameWithoutExtension + "_EXPORT_TALK.bytes",
+    );
+  }
+}
+
+function DownloadBytesFile(contents, fileName) {
   const a = document.createElement("a");
   a.href = URL.createObjectURL(
-    new Blob([importedDialogue], { type: "application/octet-stream" }),
+    new Blob([contents], { type: "application/octet-stream" }),
   );
-  let fileNameWithoutExtension = importFile.name.replace(/\.[^/.]+$/, "");
-  a.download = fileNameWithoutExtension + "_EXPORT.bytes";
+  a.download = fileName;
   a.click();
-  URL.revokeObjectURL(a.href);
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
 // #region Export Helpers
@@ -522,6 +557,9 @@ function GetGameCharArrray(game) {
       break;
     case "BUSTA2_EN":
       return BUSTA2_EN;
+      break;
+    case "MISTONIAS_HOPE_EN":
+      return MISTONIAS_HOPE_EN;
       break;
     default:
       return SPADE_WHITE_JP;
