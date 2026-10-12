@@ -10,6 +10,7 @@ template.innerHTML = `
     </option>
     <option value="BUSTA_EN">BUSTAFELLOWS</option>
     <option value="BUSTA2_EN">BUSTAFELLOWS season2</option>
+    <option value="MISTONIAS_HOPE_EN">Mistonia's Hope -The Lost Delight-</option>
     <option value="other">Other</option>
   </select>
 </div>

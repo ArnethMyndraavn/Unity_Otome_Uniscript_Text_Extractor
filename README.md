@@ -1,9 +1,10 @@
-# Karakuri-ism Text Extractor
+# UniScript Text Extractor
 
-A VN text extractor for games using code by karakuri-ism. It requires a file that matches this naming convention: `***_ep0_text_2.bytes`.
+A VN text extractor for Unity games using UniScript. It requires a file that matches this naming convention: `***_text_2.bytes`.
 
 ## No Download Required, Convert the files in Browser
-Tool can be accessed at [https://arnethmyndraavn.github.io/Karakuri-ism_Text_Extractor/TextTools.html](https://arnethmyndraavn.github.io/Karakuri-ism_Text_Extractor/TextTools.html)
+
+Tool can be accessed at [https://arnethmyndraavn.github.io/Unity_Otome_Uniscript_Text_Extractor/TextTools.html](https://arnethmyndraavn.github.io/Unity_Otome_Uniscript_Text_Extractor/TextTools.html)
 
 ## Currently supported games
 
