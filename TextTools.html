@@ -15,59 +15,88 @@
       <h1>UniScript Text Extractor</h1>
       <p>Text extraction tool for Unity Otome games that use UniScript</p>
     </header>
-    <div id="textTools">
+    <main class="toolLayout">
+      <div id="textTools">
       <!-- Tab links -->
       <div class="tab">
         <button
           id="defaultOpen"
-          class="tablinks"
+          class="tabLinks"
           onclick="openTab(event, 'Export')"
         >
         <h2>Export</h2>
         </button>
-        <button class="tablinks" onclick="openTab(event, 'Import')">
+        <button class="tabLinks" onclick="openTab(event, 'Import')">
           <h2>Import</h2>
         </button>
       </div>
 
       <!-- Tab content -->
-      <div id="Export" class="tabcontent">
+      <div id="Export" class="tabContent">
         <h2 class="tabContentTitle">Export Game Text</h2>
-        <div class="gameSelectorLabel">Choose your game:</div>
-        <game-selector id="exportGameSelector"></game-selector>
-        <div class="gameFileInput">
-            <label for="gameFileExport">Select a <span class="file-extension">.bytes</span> file to export:</label>
+        <div class="tabContentLayout">
+          <div class="tabControls">
+            <div class="gameSelectorLabel">Choose your game:</div>
+            <game-selector id="exportGameSelector"></game-selector>
+            <div class="gameFileInput">
+            <label for="gameFileExport">Select a <span class="fileExtension">.bytes</span> file to export:</label>
             <input type="file" id="gameFileExport" accept=".bytes" charset=utf-16LE onChange="SetExportFile(event)"/>
-        </div>
-        <div class="exportSection">
-          <button disabled="disabled" id="exportButton" onclick="ExportButtonClick()">Export</button>
-        </div>
-        <div class="downloadSection">
-          <button disabled="disabled" id="downloadExportTxtButton" onclick="ExportTxtDownload()">Download .txt</button>
-          <button disabled="disabled" id="downloadExportCsvButton" onclick="ExportCsvDownload()">Download .csv</button>
+            </div>
+            <div class="exportSection">
+              <button disabled="disabled" id="exportButton" onclick="ExportButtonClick()">Export</button>
+            </div>
+            <div class="downloadSection">
+              <button disabled="disabled" id="downloadExportTxtButton" onclick="ExportTxtDownload()">Download .txt</button>
+              <button disabled="disabled" id="downloadExportCsvButton" onclick="ExportCsvDownload()">Download .csv</button>
+            </div>
+          </div>
+          <section class="activitySection" aria-labelledby="exportActivityTitle">
+            <h3 id="exportActivityTitle">Export Activity</h3>
+            <div
+              id="exportActivityLog"
+              class="activityLog"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+            ></div>
+          </section>
         </div>
       </div>
 
-      <div id="Import" class="tabcontent">
+      <div id="Import" class="tabContent">
         <h2 class="tabContentTitle">Import your text</h2>
-        <div class="gameSelectorLabel">Choose your game:</div>
-        <game-selector id="importGameSelector"></game-selector>
-        <div class="gameFileInput">
-            <label for="gameFileInput">Select a <span class="file-extension">.txt</span> or <span class="file-extension">.csv</span> file to import:</label>
-            <input type="file" id="gameFileInput" accept=".txt,.csv" charset=utf-16LE onChange="SetImportFile(event)"/>
+        <div class="tabContentLayout">
+          <div class="tabControls">
+            <div class="gameSelectorLabel">Choose your game:</div>
+            <game-selector id="importGameSelector"></game-selector>
+            <div class="gameFileInput">
+              <label for="gameFileInput">Select a <span class="fileExtension">.txt</span> or <span class="fileExtension">.csv</span> file to import:</label>
+              <input type="file" id="gameFileInput" accept=".txt,.csv" charset=utf-16LE onChange="SetImportFile(event)"/>
+            </div>
+            <div class="importSection">
+              <button disabled="disabled" id="importButton" onclick="ImportButtonClick()">Import</button>
+            </div>
+            <div class="downloadSection">
+              <button disabled="disabled" id="downloadBytesButton" onclick="DownloadImportedFile()">Download</button>
+            </div>
+          </div>
+          <section class="activitySection" aria-labelledby="importActivityTitle">
+            <h3 id="importActivityTitle">Import Activity</h3>
+            <div
+              id="importActivityLog"
+              class="activityLog"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+            ></div>
+          </section>
         </div>
-        <div class="importSection">
-          <button disabled="disabled" id="importButton" onclick="ImportButtonClick()">Import</button>
-        </div>
-        <div class="downloadSection">
-          <button disabled="disabled" id="downloadBytesButton" onclick="DownloadImportedFile()">Download</button>
-        </div>
-      </div>
       </div>
     </div>
+    </main>
     <div id="faq" class="tab">
       
-      <div Class="faqContent">
+      <div class="faqContent">
         <h2>FAQ</h2>
         <h3>What Games are Supported?</h3>
         <ul>

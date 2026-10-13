@@ -26,14 +26,53 @@ header p {
   color: #53677a;
 }
 
-#textTools {
+.toolLayout {
   width: min(100%, 1000px);
   margin: 0 auto;
+}
+
+#textTools {
+  width: 100%;
+  margin: 0;
   overflow: hidden;
   border: 1px solid #d5e1eb;
   border-radius: 14px;
   background-color: #fff;
   box-shadow: 0 12px 32px rgb(31 67 96 / 12%);
+}
+
+.activitySection {
+  min-width: 0;
+}
+
+.activitySection h3 {
+  margin: 0 0 0.75rem;
+  color: #174b70;
+}
+
+.activityLog {
+  height: 220px;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 0.75rem;
+  border: 1px solid #d5e1eb;
+  border-radius: 7px;
+  background-color: #f5f8fa;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.85rem;
+  white-space: pre;
+}
+
+.activityLogEntry {
+  margin-bottom: 0.75rem;
+}
+
+.activityLogWarning {
+  color: #8a5700;
+}
+
+.activityLogError {
+  color: #a12622;
 }
 
 #faq {
@@ -90,17 +129,28 @@ input:focus-visible {
   outline-offset: 2px;
 }
 
-.tabcontent {
+.tabContent {
   display: none;
   padding: 1.5rem;
   border-top: 4px solid #1f7bb1;
+}
+
+.tabContentLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.tabControls {
+  min-width: 0;
 }
 
 .faqContent {
   padding: 1.5rem;
 }
 
-.tabcontent p {
+.tabContent p {
   margin: 0 0 1.25rem;
 }
 
@@ -117,7 +167,7 @@ input:focus-visible {
   font-weight: 600;
 }
 
-.file-extension {
+.fileExtension {
   font-weight: bold;
   background-color: #1f7bb1;
   color: #fff;
@@ -156,7 +206,7 @@ input[type="file"] {
   gap: 0.75rem;
 }
 
-.tabcontent button:not(.tablinks),
+.tabContent button:not(.tabLinks),
 input[type="file"]::file-selector-button {
   padding: 0.375rem 1.1rem;
   border: 0;
@@ -170,15 +220,25 @@ input[type="file"]::file-selector-button {
     transform 0.2s ease;
 }
 
-.tabcontent button:not(.tablinks):hover:not(:disabled),
+.tabContent button:not(.tabLinks):hover:not(:disabled),
 input[type="file"]::file-selector-button:hover {
   background-color: #17658f;
 }
 
-.tabcontent button:disabled {
+.tabContent button:disabled {
   color: #687887;
   background-color: #dce4ea;
   cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+  .tabContentLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .activityLog {
+    height: 160px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -190,7 +250,7 @@ input[type="file"]::file-selector-button:hover {
     font-size: 1.65rem;
   }
 
-  .tabcontent {
+  .tabContent {
     padding: 1.1rem;
   }
 }

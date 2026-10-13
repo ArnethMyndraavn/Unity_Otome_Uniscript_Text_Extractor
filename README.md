@@ -36,7 +36,7 @@ Tool can be accessed at [https://arnethmyndraavn.github.io/Unity_Otome_Uniscript
 | --------------- | --------: | --------------------------------- | ------------------------------------------------------------------------- |
 | Magic           |   4 bytes | ASCII                             | Always `UTXT` (`55 54 58 54`)                                             |
 | Version         |   4 bytes | Little-endian `uint32`            | Version; currently defaulted to `1`                                       |
-| Creation time   |   4 bytes | Little-endian `uint32`            | Minutes since `2018-02-01 00:00:00`                                       |
+| Creation time   |   4 bytes | Little-endian `uint32`            | Minutes since `2018-01-01 00:00:00`                                       |
 | Table length    |   4 bytes | Little-endian `uint32`            | Byte offset immediately after `TEND`                                      |
 | Number of lines | 1-4 bytes | Variable-length unsigned integer  | Number of dialogue lines                                                  |
 | Line lengths    |  Variable | Variable-length unsigned integers | Encoded byte length for each line, in order                               |

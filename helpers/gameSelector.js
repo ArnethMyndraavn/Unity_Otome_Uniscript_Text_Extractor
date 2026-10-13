@@ -1,5 +1,5 @@
-const template = document.createElement("template");
-template.innerHTML = `
+const TEMPLATE = document.createElement("template");
+TEMPLATE.innerHTML = `
 <div class="gameDropdown">
   <select name="game" class="gameSelect">
     <option value="SPADE_WHITE_JP">
@@ -18,8 +18,8 @@ template.innerHTML = `
 class GameSelector extends HTMLElement {
   constructor() {
     super();
-    const clone = template.content.cloneNode(true);
-    this.appendChild(clone);
+    const CLONE = TEMPLATE.content.cloneNode(true);
+    this.appendChild(CLONE);
   }
 
   get selectedGame() {
